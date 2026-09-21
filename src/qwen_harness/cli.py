@@ -64,7 +64,7 @@ def ensure_service():
         pass
     state_dir()
     with (state_dir() / "service.log").open("ab") as log:
-        process = subprocess.Popen([str(ROOT / ".venv/bin/python"), str(ROOT / "main.py"), "serve"],
+        process = subprocess.Popen([sys.executable, str(ROOT / "main.py"), "serve"],
                                    cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log, stderr=log, start_new_session=True)
     for _ in range(120):
         if process.poll() is not None:
@@ -134,7 +134,7 @@ def opencode_config(root: Path) -> dict:
             "build": {"disable": True}, "plan": {"disable": True},
         },
         "mcp": {"qwen_harness": {"type": "local", "enabled": True,
-            "command": [str(ROOT / ".venv/bin/python"), str(ROOT / "main.py"), "mcp"],
+            "command": [sys.executable, str(ROOT / "main.py"), "mcp"],
             "environment": {"QWEN_PROJECT_ROOT": str(root)}, "timeout": 60000}},
     }
 

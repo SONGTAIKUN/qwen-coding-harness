@@ -14,7 +14,7 @@ from .workspace import Check, Project
 
 
 def sandbox_profile(workspace: Path, temporary: Path, read_roots: list[str]) -> str:
-    allowed = [workspace, temporary, Path(ROOT / ".venv"), Path(sys.base_prefix),
+    allowed = [workspace, temporary, Path(ROOT / ".venv"), Path(sys.prefix), Path(sys.base_prefix),
                Path("/System"), Path("/Library"), Path("/usr"), Path("/bin"),
                Path("/sbin"), Path("/opt/homebrew"), Path("/dev"),
                Path("/private/var/db/dyld"), Path("/private/etc"), *map(Path, read_roots)]
@@ -33,8 +33,9 @@ async def run_check(check: Check, workspace: Path, project: Project, stdin: byte
     started = time.monotonic()
     with tempfile.TemporaryDirectory(prefix="qwen-check-") as tmp:
         temporary = Path(tmp).resolve()
-        argv = [str(ROOT / ".venv/bin/python") if arg == "{python}" else arg for arg in check.argv]
-        env = {"PATH": f"{ROOT / '.venv/bin'}:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        python = Path(sys.executable).resolve()
+        argv = [str(python) if arg == "{python}" else arg for arg in check.argv]
+        env = {"PATH": f"{python.parent}:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
                "HOME": str(temporary), "TMPDIR": str(temporary), "LANG": "en_US.UTF-8",
                "PYTHONDONTWRITEBYTECODE": "1", "PYTHONUNBUFFERED": "1", "CI": "1"}
         process = await asyncio.create_subprocess_exec(
