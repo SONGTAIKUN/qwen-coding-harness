@@ -1,0 +1,26 @@
+{
+  "upstream_url": "http://127.0.0.1:8000/v1",
+  "omlx_settings": "~/.omlx/settings.json",
+  "model": "your-local-model-alias",
+  "model_directory": "/absolute/path/to/your/model",
+  "host": "127.0.0.1",
+  "port": 8001,
+  "max_concurrency": 4,
+  "context_window": 65536,
+  "max_output_tokens": 16384,
+  "context_reserve": 2048,
+  "request_timeout_seconds": 1800,
+  "max_job_seconds": 7200,
+  "max_job_output_tokens": 196608,
+  "max_agent_steps": 24,
+  "max_repair_rounds": 3,
+  "roles": {
+    "planner": {"max_tokens": 8192, "temperature": 0.2, "reasoning_effort": "medium"},
+    "explorer": {"max_tokens": 4096, "temperature": 0.1, "reasoning_effort": "low"},
+    "test_designer": {"max_tokens": 4096, "temperature": 0.3, "reasoning_effort": "medium"},
+    "implementer": {"max_tokens": 16384, "temperature": 0.2, "reasoning_effort": "medium"},
+    "debugger": {"max_tokens": 8192, "temperature": 0.2, "reasoning_effort": "medium"},
+    "reviewer": {"max_tokens": 8192, "temperature": 0.1, "reasoning_effort": "medium"},
+    "specialist": {"max_tokens": 4096, "temperature": 0.1, "reasoning_effort": "medium"}
+  }
+}

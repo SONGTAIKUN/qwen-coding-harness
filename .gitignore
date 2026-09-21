@@ -1,0 +1,29 @@
+.venv/
+.state/
+.downloads/
+bin/
+config.json
+evals/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
+
+# Model files and local inference caches must never be committed.
+models/
+cache/
+*.safetensors
+*.gguf
+*.mlx
+
+# Local credentials and environment overrides.
+.env
+.env.*
+*.key
+*.pem
+!.env.example

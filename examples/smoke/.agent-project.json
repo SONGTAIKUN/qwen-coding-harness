@@ -1,0 +1,6 @@
+{
+  "checks": [{"name": "unit", "argv": ["{python}", "-m", "unittest", "discover", "-s", "tests", "-v"], "timeout_seconds": 30}],
+  "writable_paths": ["calculator.py"],
+  "protected_paths": ["tests"],
+  "read_roots": []
+}

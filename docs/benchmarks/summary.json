@@ -1,0 +1,23 @@
+{
+  "name": "Initial 100-task local evaluation",
+  "date": "2026-09-17 to 2026-09-21",
+  "model_class": "approximately 100B open-weight MoE coding-capable model",
+  "serving": "oMLX on Apple Silicon",
+  "tasks": 100,
+  "one_shot_public_pass": 51,
+  "harness_public_pass": 96,
+  "no_known_counterexample": 92,
+  "agent_recovered": 41,
+  "agent_recovered_oracle_pass": 19,
+  "agent_recovered_without_independent_oracle": 22,
+  "public_pass_oracle_rejected": 4,
+  "agent_not_passed": 4,
+  "debugger_example": {
+    "problem": "3423",
+    "first_candidate_actual": 18,
+    "first_candidate_expected": 21,
+    "final_public_tests": "2/2",
+    "independent_random_cases": 2000
+  },
+  "disclaimer": "Public-test harness evaluation, not an official hidden-test score or pass@1 result."
+}

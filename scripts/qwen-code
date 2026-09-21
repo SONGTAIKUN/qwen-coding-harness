@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+PROJECT=${1:-$PWD}
+if [ "$#" -gt 0 ]; then
+  shift
+fi
+exec "$ROOT/.venv/bin/python" "$ROOT/main.py" launch "$PROJECT" "$@"
